@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Saurabh Tiwari — Lead GenAI Engineer · Forward Deployed Engineer</title>
+    <meta name="description"
+        content="Lead GenAI and forward-deployed engineer. I take enterprise AI from a messy client problem to a monitored production system: agents, RAG, evaluation and deployment on Azure.">
+    <meta property="og:title" content="Saurabh Tiwari — Lead GenAI Engineer">
+    <meta property="og:description"
+        content="End-to-end enterprise AI: discovery, agent architecture, evals, deployment, operations.">
+    <meta property="og:image" content="s_portfolio.jpeg">
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%232446e8'/%3E%3Ctext x='50' y='68' font-size='54' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='800'%3EST%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #eef2f6;
+            --surface: #fff;
+            --ink: #14213d;
+            --muted: #53607a;
+            --line: #cfd8e3;
+            --accent: #2446e8;
+            --accent-ink: #fff;
+            --signal: #d98a00;
+            --ok: #0f8a5f;
+            --display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+            --body: 'Figtree', 'Segoe UI', system-ui, sans-serif;
+            box-sizing: border-box;
+        }
+
+        @media (prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) {
+                --bg: #0f1624;
+                --surface: #172034;
+                --ink: #e8edf6;
+                --muted: #9aa7bf;
+                --line: #2a3650;
+                --accent: #7d95ff;
+                --accent-ink: #0f1624;
+                --signal: #f2b441;
+                --ok: #4cc79a
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #0f1624;
+            --surface: #172034;
+            --ink: #e8edf6;
+            --muted: #9aa7bf;
+            --line: #2a3650;
+            --accent: #7d95ff;
+            --accent-ink: #0f1624;
+            --signal: #f2b441;
+            --ok: #4cc79a
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: inherit
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 4.5rem
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font: 400 1.0625rem/1.65 var(--body);
+            -webkit-font-smoothing: antialiased
+        }
+
+        a {
+            color: var(--accent);
+            text-underline-offset: 3px
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid var(--signal);
+            outline-offset: 3px;
+            border-radius: 4px
+        }
+
+        .wrap {
+            max-width: 70rem;
+            margin: 0 auto;
+            padding: 0 1.25rem
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--display);
+            line-height: 1.1;
+            margin: 0;
+            letter-spacing: -.02em
+        }
+
+        h2 {
+            font-size: clamp(1.7rem, 4vw, 2.4rem);
+            font-weight: 800;
+            margin-bottom: .6rem
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 700
+        }
+
+        p {
+            margin: 0 0 1rem;
+            max-width: 64ch
+        }
+
+        section {
+            padding: 4.25rem 0;
+            border-top: 1px solid var(--line)
+        }
+
+        .lede {
+            color: var(--muted);
+            margin-bottom: 2rem
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: color-mix(in srgb, var(--bg) 88%, transparent);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--line)
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            height: 3.5rem;
+            overflow-x: auto;
+            white-space: nowrap
+        }
+
+        nav .brand {
+            font: 800 1.05rem var(--display);
+            color: var(--ink);
+            text-decoration: none;
+            margin-right: auto
+        }
+
+        nav a:not(.brand) {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: .94rem
+        }
+
+        nav a:not(.brand):hover {
+            color: var(--ink)
+        }
+
+        #theme {
+            background: none;
+            border: 1px solid var(--line);
+            color: var(--ink);
+            border-radius: 999px;
+            width: 2.1rem;
+            height: 2.1rem;
+            cursor: pointer;
+            flex: none
+        }
+
+        /* hero */
+        .hero {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            padding: 4rem 0 2.5rem;
+            border: 0
+        }
+
+        .photo {
+            width: 15rem;
+            aspect-ratio: 4/5;
+            position: relative
+        }
+
+        .photo::before {
+            content: "";
+            position: absolute;
+            inset: .9rem -.9rem -.9rem .9rem;
+            background: var(--accent);
+            border-radius: 16px
+        }
+
+        .photo img {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 50% 12%;
+            border-radius: 16px;
+            border: 1.5px solid var(--ink);
+            display: block
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.2rem);
+            font-weight: 800
+        }
+
+        .role {
+            font: 600 1.25rem var(--display);
+            color: var(--accent);
+            margin: .8rem 0 1rem
+        }
+
+        .cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .7rem;
+            margin-top: 1.3rem
+        }
+
+        .btn {
+            display: inline-block;
+            padding: .7rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1.5px solid var(--accent)
+        }
+
+        .btn.primary {
+            background: var(--accent);
+            color: var(--accent-ink)
+        }
+
+        .facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+            gap: 1.2rem;
+            padding-bottom: 1rem
+        }
+
+        .fact {
+            padding: .9rem 0;
+            border-top: 3px solid var(--ink)
+        }
+
+        .fact b {
+            display: block;
+            font: 800 1.8rem var(--display)
+        }
+
+        .fact span {
+            color: var(--muted);
+            font-size: .95rem
+        }
+
+        /* demo */
+        .demo-sec {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 3rem;
+            align-items: start
+        }
+
+        .demo {
+            background: var(--surface);
+            border: 1.5px solid var(--ink);
+            border-radius: 14px;
+            padding: 1.25rem;
+            box-shadow: 6px 6px 0 var(--accent)
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+            margin-bottom: 1rem
+        }
+
+        .chip {
+            font: 500 .88rem var(--body);
+            padding: .4rem .75rem;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: var(--bg);
+            color: var(--ink);
+            cursor: pointer
+        }
+
+        .chip[aria-pressed="true"] {
+            background: var(--ink);
+            color: var(--bg);
+            border-color: var(--ink)
+        }
+
+        .steps {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: .45rem
+        }
+
+        .steps li {
+            display: grid;
+            grid-template-columns: 1.4rem 1fr;
+            gap: .6rem;
+            padding: .5rem .7rem;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            opacity: .45;
+            transition: opacity .25s, border-color .25s
+        }
+
+        .steps .dot {
+            width: .85rem;
+            height: .85rem;
+            border-radius: 50%;
+            border: 2px solid var(--muted);
+            margin-top: .35rem
+        }
+
+        .steps b {
+            font: 700 .95rem var(--display)
+        }
+
+        .steps span {
+            display: block;
+            color: var(--muted);
+            font-size: .86rem;
+            line-height: 1.4;
+            min-height: 1.2em
+        }
+
+        .steps li.on {
+            opacity: 1;
+            border-color: var(--accent)
+        }
+
+        .steps li.on .dot {
+            background: var(--signal);
+            border-color: var(--signal)
+        }
+
+        .steps li.done {
+            opacity: 1
+        }
+
+        .steps li.done .dot {
+            background: var(--ok);
+            border-color: var(--ok)
+        }
+
+        .answer {
+            margin-top: .9rem;
+            padding: .7rem .85rem;
+            border-left: 4px solid var(--ok);
+            background: var(--bg);
+            border-radius: 0 8px 8px 0;
+            font-size: .95rem;
+            min-height: 3.2rem
+        }
+
+        .note {
+            margin: .7rem 0 0;
+            font-size: .8rem;
+            color: var(--muted)
+        }
+
+        /* delivery journey (a real sequence) */
+        .journey {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
+            gap: 1rem;
+            counter-reset: j
+        }
+
+        .journey li {
+            counter-increment: j;
+            border-top: 3px solid var(--accent);
+            padding-top: .8rem
+        }
+
+        .journey li::before {
+            content: counter(j);
+            display: block;
+            font: 800 1.5rem var(--display);
+            color: var(--accent)
+        }
+
+        .journey b {
+            font: 700 1.05rem var(--display)
+        }
+
+        .journey span {
+            display: block;
+            color: var(--muted);
+            font-size: .92rem;
+            line-height: 1.5;
+            margin-top: .3rem
+        }
+
+        /* experience */
+        .tl {
+            list-style: none;
+            margin: 0;
+            padding: 0 0 0 1.4rem;
+            border-left: 2px solid var(--line)
+        }
+
+        .tl>li {
+            position: relative;
+            padding-bottom: 2.2rem
+        }
+
+        .tl>li::before {
+            content: "";
+            position: absolute;
+            left: calc(-1.4rem - 7px);
+            top: .5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid var(--bg)
+        }
+
+        .when {
+            color: var(--muted);
+            font-size: .9rem
+        }
+
+        .tl h3 span {
+            font-weight: 500;
+            color: var(--muted)
+        }
+
+        .tl ul {
+            margin: .6rem 0 0;
+            padding-left: 1.1rem;
+            max-width: 68ch
+        }
+
+        .tl li li {
+            padding: 0 0 .35rem
+        }
+
+        /* cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+            gap: 1.2rem
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 1.3rem
+        }
+
+        .card p {
+            font-size: .97rem;
+            color: var(--muted);
+            margin: .55rem 0 .9rem
+        }
+
+        .card.lead {
+            grid-column: 1/-1;
+            border: 1.5px solid var(--ink)
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4rem;
+            margin: 0;
+            padding: 0;
+            list-style: none
+        }
+
+        .tags li {
+            font-size: .8rem;
+            padding: .15rem .6rem;
+            border-radius: 999px;
+            background: var(--bg);
+            border: 1px solid var(--line)
+        }
+
+        .cols {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+            gap: 1.6rem 2rem
+        }
+
+        .cols h3 {
+            font-size: 1.02rem;
+            margin-bottom: .45rem
+        }
+
+        .cols p {
+            font-size: .96rem;
+            color: var(--muted);
+            margin: 0
+        }
+
+        .models h3 {
+            margin-bottom: .6rem
+        }
+
+        .fine {
+            font-size: .85rem;
+            color: var(--muted);
+            margin-top: 1.5rem
+        }
+
+        /* certs */
+        .certs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+            gap: 1rem
+        }
+
+        .cert {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            border-radius: 10px;
+            padding: .9rem 1.1rem
+        }
+
+        .cert b {
+            display: block;
+            font: 700 1rem var(--display);
+            line-height: 1.25
+        }
+
+        .cert span {
+            color: var(--muted);
+            font-size: .9rem
+        }
+
+        #posts {
+            display: grid;
+            gap: .9rem;
+            margin-bottom: 1.3rem
+        }
+
+        #posts a {
+            display: block;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: .9rem 1.1rem;
+            text-decoration: none;
+            color: var(--ink)
+        }
+
+        #posts b {
+            font-family: var(--display)
+        }
+
+        #posts span {
+            display: block;
+            color: var(--muted);
+            font-size: .9rem
+        }
+
+        footer {
+            padding: 3rem 0 4rem;
+            border-top: 1px solid var(--line)
+        }
+
+        .contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem 1.5rem;
+            margin-top: 1rem
+        }
+
+        .contact a {
+            font-weight: 600
+        }
+
+        small {
+            color: var(--muted)
+        }
+
+        @media (max-width:52rem) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 3rem
+            }
+
+            .photo {
+                width: min(15rem, 70%);
+                margin-bottom: 1rem
+            }
+
+            .demo-sec {
+                grid-template-columns: 1fr;
+                gap: 2rem
+            }
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto
+            }
+
+            * {
+                transition: none !important
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="wrap">
+            <nav aria-label="Main">
+                <a class="brand" href="#top">Saurabh Tiwari</a>
+                <a href="#approach">Approach</a><a href="#work">Experience</a><a href="#projects">Projects</a><a
+                    href="#stack">Agentic stack</a><a href="#models">Models</a><a href="#writing">Writing</a><a
+                    href="#certs">Certifications</a><a href="#contact">Contact</a>
+                <button id="theme" aria-label="Toggle dark mode">◐</button>
+            </nav>
+        </div>
+    </header>
+
+    <main id="top">
+        <div class="wrap">
+            <section class="hero" aria-labelledby="name">
+                <div class="photo"><img src="s_portfolio.jpeg" alt="Portrait of Saurabh Tiwari" width="324"
+                        height="378"></div>
+                <div>
+                    <h1 id="name">Saurabh Tiwari</h1>
+                    <p class="role">Lead GenAI Engineer · Forward Deployed Engineer</p>
+                    <p>I take enterprise AI from a client’s messy problem to a monitored production system, and stay on
+                        the hook after launch. That means discovery with stakeholders, agent and retrieval architecture,
+                        evaluation, deployment on Azure, and the operations that keep quality from drifting.</p>
+                    <p>Currently on EY’s Assess platform with Hexaware, building agentic and RAG modules across 12
+                        microservices. Based in Mumbai.</p>
+                    <div class="cta">
+                        <a class="btn primary" href="mailto:tiwarisaurabh7757@gmail.com">Email me</a>
+                        <a class="btn" href="https://www.linkedin.com/in/saurabh-tiwari1" rel="noopener">LinkedIn</a>
+                        <a class="btn" href="https://github.com/SaurabhTiwari7757" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+            </section>
+            <div class="facts" aria-label="Highlights">
+                <div class="fact"><b>7+ years</b><span>shipping ML and GenAI to production</span></div>
+                <div class="fact"><b>12 services</b><span>in the EY Assess platform, all on Azure OpenAI</span></div>
+                <div class="fact"><b>64% → 84%</b><span>chatbot answer accuracy, driven by retrieval and prompt
+                        work</span></div>
+                <div class="fact"><b>90%</b><span>text-extraction accuracy gain on complex PDFs</span></div>
+            </div>
+
+            <section class="demo-sec" aria-labelledby="demo-h">
+                <div>
+                    <h2 id="demo-h">An agent run, step by step</h2>
+                    <p class="lede">The pattern behind Sidekick and Corky: a supervisor plans, retrieval is hybrid and
+                        reranked, tools run in a sandbox, and every answer is graded before and after it ships.</p>
+                    <p>Pick a question to see how each stage behaves. This is an illustrative trace, not live client
+                        data.</p>
+                </div>
+                <div class="demo">
+                    <div class="chips" role="group" aria-label="Sample questions" id="chips"></div>
+                    <ol class="steps" id="steps"></ol>
+                    <div class="answer" id="answer" aria-live="polite">Choose a question to run the agent.</div>
+                    <p class="note">Stages mirror my production design; text is simplified.</p>
+                </div>
+            </section>
+        </div>
+
+        <div class="wrap">
+            <section id="approach" aria-labelledby="ap-h">
+                <h2 id="ap-h">How I deliver, end to end</h2>
+                <p class="lede">Forward-deployed work means owning the whole path, not a single notebook. This is the
+                    sequence I run on client engagements.</p>
+                <ol class="journey">
+                    <li><b>Frame the problem</b><span>Work with stakeholders to turn a vague ask into a measurable task
+                            and a success metric.</span></li>
+                    <li><b>Design the system</b><span>Choose agent topology, retrieval strategy, models and data
+                            boundaries.</span></li>
+                    <li><b>Build the harness</b><span>Tools, memory, guardrails and sandboxed execution around the
+                            model.</span></li>
+                    <li><b>Evaluate first</b><span>Golden sets, trajectory and LLM-judge evals before anything reaches
+                            users.</span></li>
+                    <li><b>Deploy</b><span>FastAPI services, containers and Kubernetes on Azure with auth and
+                            caching.</span></li>
+                    <li><b>Operate</b><span>Tracing, drift and hallucination monitoring, cost control, and
+                            iteration.</span></li>
+                </ol>
+            </section>
+
+            <section id="work" aria-labelledby="work-h">
+                <h2 id="work-h">Experience</h2>
+                <ol class="tl">
+                    <li>
+                        <div class="when">Mar 2026 – Present · Mumbai</div>
+                        <h3>Senior Data Scientist, GenAI Engineer <span>at Hexaware Technologies</span></h3>
+                        <p><b>Client: EY. EY Assess platform, finance domain.</b> A consulting platform of 12
+                            microservices in a hub-and-spoke design with DocUpload at the centre, sharing auth, Redis
+                            caching and App Insights telemetry.</p>
+                        <ul>
+                            <li>Architected AI report generation that turns financial data into executive summaries and
+                                audit-ready documents with GPT-4o and structured prompting.</li>
+                            <li>Built insight generation, summarization pipelines and a recommendation engine used by
+                                consultants during assessments and audits.</li>
+                            <li>Designed Sidekick, a QnA assistant on advanced RAG and a LangGraph multi-agent system
+                                for multi-step financial queries.</li>
+                            <li>Put quality monitoring in place for factual accuracy, hallucination rate and relevance
+                                with LangFuse, DeepEval and Phoenix Arize.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="when">Apr 2024 – Mar 2026 · Mumbai</div>
+                        <h3>Data Scientist <span>at Fractal Analytics</span></h3>
+                        <p><b>Client: Constellation Brands. Corky chatbot.</b></p>
+                        <ul>
+                            <li>Built a knowledge assistant over large document repositories with advanced RAG and
+                                LangGraph agents.</li>
+                            <li>Used Azure AI Search and Azure OpenAI embeddings, with Reciprocal Rank Fusion to rerank
+                                hybrid results and cut hallucinations.</li>
+                            <li>Wrote dynamic few-shot templates per query category, lifting accuracy from 64% to 84%.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="when">Feb 2022 – Mar 2024 · Mumbai</div>
+                        <h3>Senior Associate, Data Science <span>at Netscribes</span></h3>
+                        <p><b>Client: Spotlight. Multimodal data extraction.</b></p>
+                        <ul>
+                            <li>Raised extraction accuracy by 90% with an end-to-end pipeline of ML, deep learning, OCR
+                                and image preprocessing.</li>
+                            <li>Combined SpaCy and multilingual BERT for entity recognition across varied PDF layouts.
+                            </li>
+                            <li>Led a team of interns on NLP projects.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="when">Jun 2019 – Jan 2022 · Mumbai</div>
+                        <h3>Associate Analyst, AIML <span>at Infosys</span></h3>
+                        <ul>
+                            <li>Containerized ML services with Docker and deployed them on an on-premises Kubernetes
+                                cluster.</li>
+                            <li>Automated rule-based work across SAP, Excel, Word and Outlook with UiPath and
+                                AssistEdge.</li>
+                            <li>Built a behavioral model that found customers likely to respond to campaigns.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </section>
+
+            <section id="projects" aria-labelledby="proj-h">
+                <h2 id="proj-h">Selected work</h2>
+                <div class="grid">
+                    <article class="card lead">
+                        <h3>Sidekick: multi-agent financial assistant (EY Assess)</h3>
+                        <p>A conversational assistant embedded in a 12-service platform. A LangGraph supervisor breaks
+                            multi-step financial questions into sub-tasks, retrieval is hybrid and reranked, and outputs
+                            are continuously scored for hallucination and relevance in production.</p>
+                        <ul class="tags">
+                            <li>LangGraph</li>
+                            <li>Multi-agent</li>
+                            <li>Azure OpenAI</li>
+                            <li>Advanced RAG</li>
+                            <li>LangFuse</li>
+                            <li>DeepEval</li>
+                            <li>Redis</li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h3>Corky enterprise chatbot</h3>
+                        <p>Hybrid retrieval with RRF and category-specific few-shot prompts. Accuracy rose from 64% to
+                            84%.</p>
+                        <ul class="tags">
+                            <li>Azure AI Search</li>
+                            <li>RRF</li>
+                            <li>Prompt design</li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h3>RAG document QnA platform</h3>
+                        <p>Multi-user system that turns PPTs, PDFs and structured documents into Q&amp;A with GPT-4.</p>
+                        <ul class="tags">
+                            <li>GPT-4</li>
+                            <li>python-pptx</li>
+                            <li>RAG</li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h3>PDF insights engine</h3>
+                        <p>Extracts structured financial data from PDFs using few-shot and chain-of-thought prompting.
+                        </p>
+                        <ul class="tags">
+                            <li>Streamlit</li>
+                            <li>GPT-4</li>
+                            <li>Chain-of-thought</li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h3>Drawing object detection</h3>
+                        <p>YOLO-NAS with custom non-maximum suppression and box refinement for precise XY coordinates
+                            from engineering drawings.</p>
+                        <ul class="tags">
+                            <li>YOLO-NAS</li>
+                            <li>OpenCV</li>
+                            <li>Custom NMS</li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h3>SOW OCR monitoring and deployment</h3>
+                        <p>ETL pipelines, OCR APIs and Kubernetes production support for finance documents.</p>
+                        <ul class="tags">
+                            <li>Python</li>
+                            <li>Kubernetes</li>
+                            <li>ETL</li>
+                        </ul>
+                    </article>
+                    <article class="card">
+                        <h3>HDBSCAN customer segmentation</h3>
+                        <p>Behavioral clustering that identified high-value segments and improved campaign response.</p>
+                        <ul class="tags">
+                            <li>HDBSCAN</li>
+                            <li>Scikit-learn</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <section id="stack" aria-labelledby="stack-h">
+                <h2 id="stack-h">Agentic AI stack</h2>
+                <p class="lede">The layers around the model are where most production quality is won or lost.</p>
+                <div class="cols">
+                    <div>
+                        <h3>Deep agents and planning</h3>
+                        <p>Long-horizon agents with planner and sub-agent delegation, task decomposition, and scratchpad
+                            and file-based context.</p>
+                    </div>
+                    <div>
+                        <h3>Agent harness</h3>
+                        <p>Tool registries, permissioned tool calls, retries, memory, context engineering and guardrails
+                            built around the model loop.</p>
+                    </div>
+                    <div>
+                        <h3>Sandboxed execution</h3>
+                        <p>Isolated code and tool execution with scoped credentials, so agents can act without being
+                            trusted with everything.</p>
+                    </div>
+                    <div>
+                        <h3>Complex multi-agent systems</h3>
+                        <p>Supervisor, handoff and graph-based orchestration with LangGraph, CrewAI and AutoGen;
+                            interoperability through MCP and A2A.</p>
+                    </div>
+                    <div>
+                        <h3>Agent evaluation</h3>
+                        <p>Golden datasets, trajectory and tool-use evals, LLM-as-judge, hallucination and groundedness
+                            scoring in CI and in production.</p>
+                    </div>
+                    <div>
+                        <h3>Observability</h3>
+                        <p>Tracing, cost and latency tracking with LangFuse, Phoenix Arize and Azure App Insights.</p>
+                    </div>
+                    <div>
+                        <h3>Advanced and agentic RAG</h3>
+                        <p>Hybrid search, RRF reranking, retrieval graders, query rewriting, graph retrieval with Neo4j.
+                        </p>
+                    </div>
+                    <div>
+                        <h3>Deployment</h3>
+                        <p>FastAPI and LangServe services, Docker, Kubernetes, Azure, AWS SageMaker and Bedrock,
+                            Databricks.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="models" class="models" aria-labelledby="models-h">
+                <h2 id="models-h">Model landscape</h2>
+                <p class="lede">I choose models per task on quality, latency, cost and data-residency needs, not brand.
+                    These are the families I work with or track closely.</p>
+                <div class="cols">
+                    <div>
+                        <h3>Proprietary</h3>
+                        <ul class="tags">
+                            <li>Claude Opus 5.5</li>
+                            <li>Claude Sonnet 5.5</li>
+                            <li>GPT-5.5</li>
+                            <li>GPT-4o</li>
+                            <li>Gemini 3.5</li>
+                            <li>Mistral Medium 3.5</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Open-weight</h3>
+                        <ul class="tags">
+                            <li>Kimi K3</li>
+                            <li>DeepSeek V4</li>
+                            <li>GLM-5</li>
+                            <li>Qwen 3.x</li>
+                            <li>MiniMax M3</li>
+                            <li>Llama 4</li>
+                            <li>Gemma 4</li>
+                            <li>Phi-4</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Vision-language</h3>
+                        <ul class="tags">
+                            <li>GPT-4 Vision</li>
+                            <li>Gemini</li>
+                            <li>Qwen-VL</li>
+                            <li>Llama 4 multimodal</li>
+                            <li>Gemma 4</li>
+                            <li>LlamaOCR</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Serving and fine-tuning</h3>
+                        <ul class="tags">
+                            <li>vLLM</li>
+                            <li>Hugging Face</li>
+                            <li>LoRA / PEFT</li>
+                            <li>Azure OpenAI</li>
+                            <li>AWS Bedrock</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="fine">Model names reflect the November 2026 landscape and change quickly.</p>
+            </section>
+
+            <section id="writing" aria-labelledby="w-h">
+                <h2 id="w-h">Writing</h2>
+                <p class="lede">I write about building agents and RAG systems that survive production.</p>
+                <div id="posts"></div>
+                <div class="cta" style="margin-top:0">
+                    <a class="btn primary" href="https://www.linkedin.com/in/saurabh-tiwari1/recent-activity/all/"
+                        rel="noopener">Posts on LinkedIn</a>
+                    <a class="btn" href="https://medium.com/@tiwarisaurabh7757" rel="noopener">Articles on Medium</a>
+                </div>
+            </section>
+
+            <section id="certs" aria-labelledby="c-h">
+                <h2 id="c-h">Certifications</h2>
+                <div class="certs">
+                    <div class="cert"><b>Building Advanced AI Agents with AutoGen</b><span>Analytics Vidhya</span></div>
+                    <div class="cert"><b>Building Production-Ready RAG Systems with LlamaIndex</b><span>Analytics
+                            Vidhya</span></div>
+                    <div class="cert"><b>LLM Fine-tuning</b><span>Analytics Vidhya</span></div>
+                    <div class="cert"><b>Natural Language Processing Using PyTorch</b><span>Analytics Vidhya</span>
+                    </div>
+                    <div class="cert"><b>Applied Machine Learning</b><span>LinkedIn Learning</span></div>
+                    <div class="cert"><b>Machine Learning with Python</b><span>Cognitive Class (IBM)</span></div>
+                </div>
+                <p class="fine"><b>Education:</b> B.Sc., Ramnarain Ruia Autonomous College, University of Mumbai,
+                    2016–2019.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer id="contact">
+        <div class="wrap">
+            <h2>Let’s build something that ships</h2>
+            <p>Open to lead GenAI and forward-deployed engineering roles, and to conversations about production agent
+                systems.</p>
+            <div class="contact">
+                <a href="mailto:tiwarisaurabh7757@gmail.com">tiwarisaurabh7757@gmail.com</a>
+                <a href="https://www.linkedin.com/in/saurabh-tiwari1" rel="noopener">LinkedIn</a>
+                <a href="https://github.com/SaurabhTiwari7757" rel="noopener">GitHub</a>
+                <a href="https://medium.com/@tiwarisaurabh7757" rel="noopener">Medium</a>
+                <a href="tel:+918454005926">+91 8454005926</a>
+            </div>
+            <p style="margin-top:2rem"><small>© 2026 Saurabh Tiwari · Mumbai, India</small></p>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            // Add your LinkedIn/Medium posts here: {title:'...', url:'https://...', blurb:'one line'}
+            var POSTS = [];
+
+            var root = document.documentElement;
+            try { var t = localStorage.getItem('theme'); if (t) root.setAttribute('data-theme', t) } catch (e) { }
+            document.getElementById('theme').addEventListener('click', function () {
+                var dark = root.getAttribute('data-theme') === 'dark' || (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+                var n = dark ? 'light' : 'dark'; root.setAttribute('data-theme', n);
+                try { localStorage.setItem('theme', n) } catch (e) { }
+            });
+
+            var pb = document.getElementById('posts');
+            POSTS.forEach(function (p) {
+                var a = document.createElement('a'); a.href = p.url; a.rel = 'noopener';
+                var b = document.createElement('b'); b.textContent = p.title; var s = document.createElement('span'); s.textContent = p.blurb || '';
+                a.appendChild(b); a.appendChild(s); pb.appendChild(a)
+            });
+            if (!POSTS.length) pb.style.display = 'none';
+
+            var stages = ['Plan', 'Retrieve', 'Use tools in a sandbox', 'Grade evidence', 'Answer with citations', 'Evaluate and trace'];
+            var Q = [
+                {
+                    q: 'Why did margin drop this quarter?',
+                    d: ['Supervisor splits it into revenue, cost and period-comparison sub-tasks.', 'Vector and keyword search merged with RRF across finance documents.', 'Calculation runs in an isolated sandbox with read-only data access.', 'Grader keeps 4 relevant chunks and drops 6 weak ones.', 'Cites the report sections the numbers came from.', 'Groundedness and relevance scored; trace stored for review.'],
+                    a: 'Margin fell mainly on higher input costs, with each figure linked to its source section.'
+                },
+                {
+                    q: 'Summarize the audit findings',
+                    d: ['Detects a summarization task and selects the matching prompt and tools.', 'Pulls candidate passages across uploaded documents.', 'Document parser runs in isolation; no network access.', 'Grader flags a thin match and triggers a second retrieval.', 'Drafts an executive summary with references.', 'Hallucination check runs before the draft reaches the user.'],
+                    a: 'A concise executive summary where every finding points back to its source passage.'
+                },
+                {
+                    q: 'Which policy applies here?',
+                    d: ['Classifies the query category to pick few-shot examples.', 'Filtered search across policy versions.', 'No tool needed; the agent skips this step.', 'Rejects an outdated policy version.', 'Names the current policy, or states that nothing supports an answer.', 'Logged as a regression case if confidence is low.'],
+                    a: 'Names the current policy, or says plainly that the documents do not support an answer.'
+                }
+            ];
+            var chips = document.getElementById('chips'), steps = document.getElementById('steps'), ans = document.getElementById('answer'), timer;
+            var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+            stages.forEach(function (s) { var li = document.createElement('li'); li.innerHTML = '<i class="dot"></i><div><b>' + s + '</b><span></span></div>'; steps.appendChild(li) });
+            var lis = steps.children;
+            function run(i) {
+                clearTimeout(timer);
+                Array.prototype.forEach.call(chips.children, function (c, j) { c.setAttribute('aria-pressed', j === i) });
+                Array.prototype.forEach.call(lis, function (l) { l.className = ''; l.querySelector('span').textContent = '' });
+                ans.textContent = 'Running…'; var n = 0;
+                (function next() {
+                    if (n > 0) lis[n - 1].className = 'done';
+                    if (n === stages.length) { ans.textContent = Q[i].a; return }
+                    lis[n].className = 'on'; lis[n].querySelector('span').textContent = Q[i].d[n];
+                    n++; timer = setTimeout(next, reduce ? 0 : 800);
+                })();
+            }
+            Q.forEach(function (q, i) { var b = document.createElement('button'); b.type = 'button'; b.className = 'chip'; b.textContent = q.q; b.setAttribute('aria-pressed', 'false'); b.addEventListener('click', function () { run(i) }); chips.appendChild(b) });
+        })();
+    </script>
+</body>
+
+</html>
